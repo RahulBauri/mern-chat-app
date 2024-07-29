@@ -13,14 +13,17 @@ const useLogin = () => {
     }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
+      const res = await fetch(
+        'https://mern-chat-app-prod-6kj0.onrender.com/api/auth/login',
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify({ username, password }),
+        }
+      );
 
       const data = await res.json();
       if (data.error) {

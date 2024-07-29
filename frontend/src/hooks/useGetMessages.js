@@ -11,7 +11,7 @@ const useGetMessages = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://localhost:5000/api/messages/${selectedConversation._id}`,
+          `https://mern-chat-app-prod-6kj0.onrender.com/api/messages/${selectedConversation._id}`,
           {
             credentials: 'include',
           }

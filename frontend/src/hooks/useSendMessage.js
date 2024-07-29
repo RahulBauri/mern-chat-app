@@ -11,7 +11,7 @@ const useSendMessage = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:5000/api/messages/send/${selectedConversation._id}`,
+        `https://mern-chat-app-prod-6kj0.onrender.com/api/messages/send/${selectedConversation._id}`,
         {
           method: 'POST',
           credentials: 'include',
