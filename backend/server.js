@@ -4,12 +4,11 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
 import connectToMongoDB from './db/connectToMongoDB.js';
+import { app, server } from './socket/socket.js';
 
 import authRoutes from './routes/authRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-
-const app = express();
 
 const PORT = process.env.PORT || 5000;
 
@@ -32,7 +31,7 @@ app.get('/test', (req, res) => {
   res.json({ message: 'hello world!' });
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB();
   console.log(`server is listening on port ${PORT} ...`);
 });

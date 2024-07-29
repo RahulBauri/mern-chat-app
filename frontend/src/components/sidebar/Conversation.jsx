@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuthContext } from '../../context/AuthContext';
+import { useSocketContext } from '../../context/SocketContext';
 
 const Conversation = ({ conversation, emoji, lastIdx }) => {
   const { fullName, profilePic, _id } = conversation;
@@ -7,6 +8,11 @@ const Conversation = ({ conversation, emoji, lastIdx }) => {
   const { selectedConversation, setSelectedConversation } = useAuthContext();
 
   const isSelected = selectedConversation?._id === _id;
+
+  const { onlineUsers } = useSocketContext();
+
+  const isOnline = onlineUsers.includes(conversation._id);
+
   return (
     <>
       <div
@@ -15,7 +21,7 @@ const Conversation = ({ conversation, emoji, lastIdx }) => {
         }`}
         onClick={() => setSelectedConversation(conversation)}
       >
-        <div className='avatar online'>
+        <div className={`avatar ${isOnline ? 'online' : 'offline'}`}>
           <div className='w-12 rounded-full'>
             <img src={profilePic} alt={fullName} />
           </div>
